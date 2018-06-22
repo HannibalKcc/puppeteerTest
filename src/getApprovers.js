@@ -9,11 +9,15 @@ async function getApprovers ({page, tar}) {
   await page.goto(tar);
   // TODO 滚动获取更多
   let nodeBtn = await page.$('.Card .Button--plain');
-  await page.click(nodeBtn);
-  let nodeListBox = await page.$$('.VoterList-content')
-  nodeListBox.scrollTop = 999; // 直接设置滚动到底
-  const nodeLinkList = await page.$$('.VoterList-content .List-item .UserLink-link')
-  let linkList = nodeLinkList.map(node => node.href) // 获取点赞者个人页面
+  await nodeBtn.click(nodeBtn);
+  await page.waitForSelector('.VoterList-content .List-item .UserLink-link');
+  await page.evaluate(() => {
+    document.querySelector('.VoterList-content').scrollTop = 999;
+    // TODO 等待渲染 继续滚动
+  });
+  // nodeListBox.scrollTop = 999; // 直接设置滚动到底
+  // let nodeLinkList = await page.$$eval('.VoterList-content .List-item .UserLink-link', node => node);
+  // let linkList = nodeLinkList.map(node => node.href) // 获取点赞者个人页面
   
   return;
   

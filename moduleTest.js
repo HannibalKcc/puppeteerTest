@@ -3,11 +3,12 @@ const puppeteer = require('puppeteer');
 const colors = require('colors');
 const getApprovers = require('./src/getApprovers');
 
-console.log('浏览器开始运行'.magenta);
 (async () => {
+  console.log('浏览器开始运行'.magenta);
+  
   const browser = await puppeteer.launch({
     headless: false, // 取消无毛模式，显示UI界面
-    slowMo: 250 // 毫秒级别地延迟操作
+    // slowMo: 250 // 毫秒级别地延迟操作
   });
   const page = await browser.newPage();
   await getApprovers({page, tar: 'https://www.zhihu.com/question/54244634/answer/306330800'});
