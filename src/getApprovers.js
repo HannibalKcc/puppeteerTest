@@ -35,7 +35,7 @@ async function getApproversCounts (page) {
 
 /**
  * 控制无限滚动条 迭代滚动到指定位置
- * @return <Function> 控制滚动的函数
+ * @return <Array> 包含控制滚动的函数以及所需要的参数
  * */
 function scrollToCounts (page, maxApproversCounts = 0, limit = 100) {
   return [
