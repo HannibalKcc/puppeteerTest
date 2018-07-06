@@ -1,6 +1,6 @@
 const path = require('path');
-const echarts = require("echarts");
-const node_echarts = require('node-echarts');
+const echarts = require('echarts');
+const nodeEcharts = require('node-echarts');
 
 /**
  * 生成点赞时间图，并写入imgs文件夹内
@@ -66,20 +66,20 @@ function addVotesLineImg ({
         data: data.map(data => data.data)
       }
     ]
-  }
-  
-  node_echarts({
+  };
+
+  nodeEcharts({
     width: 500,
     height: 500,
     option, // Echarts configuration, type is Object.
-    path //If the path  is not set, return the Buffer of image.
-  })
+    path // If the path  is not set, return the Buffer of image.
+  });
 }
 
 // 生成默认图片地址
 function getDefaultPath () {
   let date = new Date();
-  return path.join(__diranme, '../imgs', `${date.getTime()}.png`);
+  return path.join(__dirname, '../imgs', `${date.getTime()}.png`);
 }
 
-module.exports = addVotesLineImg
+module.exports = addVotesLineImg;
